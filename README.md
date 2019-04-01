@@ -1,2 +1,13 @@
 # telloArudino
-Open source arudino library for controlling tello through ESP32 
+This is a arudino library for controlling DJI tello through ESP32
+
+This library controls the tello by sending commands via UDP as mentioned in the SDK documenatation in below link
+https://www.ryzerobotics.com/tello/downloads
+
+## How to use the library ?
+1. To download , enter "git clone https://github.com/akshayvernekar/telloArudino.git" in the terminal(Mac/linux) or command prompt(Windows) or  click the DOWNLOAD ZIP button and rename the uncompressed folder as "tello".
+
+2. Place the "tello" library folder your arduinosketchfolder/libraries/ folder. 
+You may need to create the libraries subfolder if its your first library. Restart the IDE.
+
+3. In your Arudino Playground application go to Sketch > Include Library > choose "tello" from Contributed Libraries section to include this libraru in your skecth. Go to examples\tellocontroller.ino for usage .
