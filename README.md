@@ -11,3 +11,6 @@ https://www.ryzerobotics.com/tello/downloads
 You may need to create the libraries subfolder if its your first library. Restart the IDE.
 
 3. In your Arudino Playground application go to Sketch > Include Library > choose "tello" from Contributed Libraries section to include this library in your skecth. Go to examples\tello_example.ino for example usage .
+
+## Using the example:
+	Replace the 'networkName' and 'networkPswd' with the SSID and password of your drone .
