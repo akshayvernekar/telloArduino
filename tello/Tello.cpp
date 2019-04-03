@@ -230,7 +230,7 @@ bool Tello::flip_right()
 
 bool Tello::flip_left()
 {
-	string response = sendCommand("flipe l");
+	string response = sendCommand("flip l");
 	if(!response.compare("ok"))
 	{
 		return true;
