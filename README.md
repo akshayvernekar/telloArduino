@@ -12,5 +12,14 @@ You may need to create the libraries subfolder if its your first library. Restar
 
 3. In your Arduino Playground application go to Sketch > Include Library > choose "tello" from Contributed Libraries section to include this library in your skecth. Go to examples\tello_example.ino for example usage .
 
+## API usage
+	// 1. Create the object
+	Tello tello
+	
+	// 2. Initialise the Object after your device gets the IP address
+	tello.init()
+	
+	// 3 .Once the object is initalised you can use the various fubnctions to send commands to tello.
+
 ## Using the example:
 	Replace the 'networkName' and 'networkPswd' with the SSID and password of your drone .
