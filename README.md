@@ -80,8 +80,8 @@ You may need to create the libraries subfolder if its your first library. Restar
 	Set Wi-Fi with SSID password(Works only with EDU version, so havent tested):
 		bool changeWifi(string ssid, string password);
 	
-	@return : 
-		true = if tello sent response for the command sent.
+	@return for all the above commands: 
+		true = if tello sent "ok" response for the command sent.
 		false = if no response was received from tello, since the transmission is UDP 
 			there might be packet loss and the response might have been lost.
 	
