@@ -1,5 +1,5 @@
 # telloArduino
-This is a Arduino library for controlling DJI tello through ESP32
+This is a Arduino library for controlling DJI tello through ESP32 Module.
 
 This library controls the tello by sending commands via UDP as mentioned in the SDK documenatation in below link
 https://www.ryzerobotics.com/tello/downloads
