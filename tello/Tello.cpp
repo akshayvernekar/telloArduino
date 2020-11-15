@@ -6,6 +6,7 @@
  */
 
 #include "Tello.h"
+#include <string>
 
 static const char* TELLOIPADDRESS = "192.168.10.1";
 static const int COMMAND_PORT = 8889 ;
@@ -268,8 +269,14 @@ bool Tello::setSpeed(int x)
 }
 
 //TODO: need to understand this RC stuff
-bool Tello::sendRCcontrol(int x,int y,int z)
-{
+bool Tello::sendRCcontrol(int a,int b,int c, short d)
+{	
+	char buff[10];
+	string _a = itoa(a,buff,10);
+	string _b = itoa(a,buff,10);
+	string _c = itoa(a,buff,10);
+	string _d = itoa(a,buff,10);
+	string command = "rc " + _a.append(" ") + _b.append(" ") + _c.append(" ") + _d.append(" ");
 	return false;
 }
 

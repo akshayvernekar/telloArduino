@@ -50,7 +50,7 @@ public:
 	bool flip_back();
 
 	bool setSpeed(int x);
-	bool sendRCcontrol(int x,int y,int z);
+	bool sendRCcontrol(int a,int b,int c, short d);
 	bool changeWifi(string ssid, string password);
 
 	int getSpeed();
