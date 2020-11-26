@@ -4,7 +4,8 @@ This is a Arduino library for controlling DJI tello through ESP32 Module.
 This library controls the tello by sending commands via UDP as mentioned in the SDK documenatation in below link
 https://www.ryzerobotics.com/tello/downloads
 
-##### Note: This library is compiled and tested with Arudino 1.8.13(Latest version of Arudino as of Nov/2020) with Wrover 32 hardware board.
+##### Note: This library is compiled and tested with Arudino 1.8.13(Latest version of Arudino as of Nov/2020) with Wrover 32 hardware board. Please make sure to check if you have installed ESP32 board package you can find instructions [here](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/) and the board chosen is the appropriate ESP board before compiling.
+
 ## How to use the library ?
 1. To download , enter "git clone https://github.com/akshayvernekar/telloArduino.git" in the terminal(Mac/linux) or command prompt(Windows) or  click the DOWNLOAD ZIP button .
 
