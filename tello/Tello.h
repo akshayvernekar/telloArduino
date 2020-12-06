@@ -12,10 +12,6 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include <string>
-#include <limits>
-// #include <stdlib.h>
-// #include <unistd.h>
-// #include <stdio.h>
 
 using namespace std;
 class Tello
