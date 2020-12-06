@@ -7,10 +7,11 @@
 
 #include "Tello.h"
 
-static const char *TELLOIPADDRESS = "192.168.10.1";
+static const char* TELLOIPADDRESS = "192.168.10.1";
 static const int COMMAND_PORT = 8889;
 static const int STATUS_PORT = 8890;
 #define MAXBUFFSIZE 512
+
 
 using namespace std;
 
@@ -21,6 +22,7 @@ Tello::Tello()
 
 Tello::~Tello()
 {
+
 }
 
 void Tello::init()
@@ -30,30 +32,32 @@ void Tello::init()
 	udpclient->begin(COMMAND_PORT);
 	isInitialised = true;
 	string response = sendCommand("command");
-	//if response is other than "ok" then we consider as error
-	if (response.compare("ok"))
+
+	//if response is other than "ok" then we consider as error 
+	if(response.compare("ok"))
 	{
 		isInitialised = true;
 	}
 }
 
+
 string Tello::sendCommand(string command)
 {
-	if (!isInitialised)
+	if(!isInitialised)
 		return "error";
 
 	udpclient->beginPacket(TELLOIPADDRESS, COMMAND_PORT);
-	udpclient->write((const unsigned char *)command.c_str(), command.length());
-	udpclient->endPacket();
+  	udpclient->write((const unsigned char*)command.c_str(), command.length());
+  	udpclient->endPacket();
 
-	char buffer[MAXBUFFSIZE] = {0};
+	char buffer[MAXBUFFSIZE]={0};
 	udpclient->parsePacket();
 	int n = udpclient->read(buffer, MAXBUFFSIZE);
-	if (n > 0)
+	if(n > 0)
 	{
 		buffer[n] = '\0';
 	}
-	printf("sendCommand: %s response=%s\n", command.c_str(), buffer);
+	printf("sendCommand: %s response=%s\n",command.c_str(),buffer);
 
 	return string(buffer);
 }
@@ -61,7 +65,7 @@ string Tello::sendCommand(string command)
 bool Tello::takeoff()
 {
 	string response = sendCommand("takeoff");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -71,7 +75,7 @@ bool Tello::takeoff()
 bool Tello::land()
 {
 	string response = sendCommand("land");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -81,7 +85,7 @@ bool Tello::land()
 bool Tello::startVideoStream()
 {
 	string response = sendCommand("streamon");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -91,7 +95,7 @@ bool Tello::startVideoStream()
 bool Tello::stopVideoStream()
 {
 	string response = sendCommand("streamoff");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -101,7 +105,7 @@ bool Tello::stopVideoStream()
 bool Tello::turnOff()
 {
 	string response = sendCommand("emergency");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -111,9 +115,9 @@ bool Tello::turnOff()
 bool Tello::up(int x)
 {
 	char buff[10];
-	string command = "up " + string(itoa(x, buff, 10));
+	string command = "up " + string(itoa(x,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -123,9 +127,9 @@ bool Tello::up(int x)
 bool Tello::down(int x)
 {
 	char buff[10];
-	string command = "down " + string(itoa(x, buff, 10));
+	string command = "down " + string(itoa(x,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -135,9 +139,9 @@ bool Tello::down(int x)
 bool Tello::left(int x)
 {
 	char buff[10];
-	string command = "left " + string(itoa(x, buff, 10));
+	string command = "left " + string(itoa(x,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -147,9 +151,9 @@ bool Tello::left(int x)
 bool Tello::right(int x)
 {
 	char buff[10];
-	string command = "right " + string(itoa(x, buff, 10));
+	string command = "right " + string(itoa(x,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -159,9 +163,9 @@ bool Tello::right(int x)
 bool Tello::forward(int x)
 {
 	char buff[10];
-	string command = "forward " + string(itoa(x, buff, 10));
+	string command = "forward " + string(itoa(x,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -171,9 +175,9 @@ bool Tello::forward(int x)
 bool Tello::back(int x)
 {
 	char buff[10];
-	string command = "back " + string(itoa(x, buff, 10));
+	string command = "back " + string(itoa(x,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -183,9 +187,9 @@ bool Tello::back(int x)
 bool Tello::rotate_clockwise(int deg)
 {
 	char buff[10];
-	string command = "cw " + string(itoa(deg, buff, 10));
+	string command = "cw " + string(itoa(deg,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -195,9 +199,9 @@ bool Tello::rotate_clockwise(int deg)
 bool Tello::rotate_anticlockwise(int deg)
 {
 	char buff[10];
-	string command = "ccw " + string(itoa(deg, buff, 10));
+	string command = "ccw " + string(itoa(deg,buff,10));
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -207,7 +211,7 @@ bool Tello::rotate_anticlockwise(int deg)
 bool Tello::flip_front()
 {
 	string response = sendCommand("flip f");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -217,7 +221,7 @@ bool Tello::flip_front()
 bool Tello::flip_right()
 {
 	string response = sendCommand("flip r");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -227,7 +231,7 @@ bool Tello::flip_right()
 bool Tello::flip_left()
 {
 	string response = sendCommand("flip l");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -237,7 +241,7 @@ bool Tello::flip_left()
 bool Tello::flip_back()
 {
 	string response = sendCommand("flip b");
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -247,16 +251,16 @@ bool Tello::flip_back()
 bool Tello::setSpeed(int x)
 {
 	char buff[10];
-	string command = "speed " + string(itoa(x, buff, 10));
-	string response;
-	if ((x < 10) || (x > 100))
+	string command = "speed " + string(itoa(x,buff,10));
+	string response ;
+	if((x < 10) || (x > 100))
 	{
 		//cout << "speed out of range " << endl;
 		return false;
 	}
 
 	response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -289,9 +293,9 @@ bool Tello::sendRCcontrol(int a, int b, int c, int d)
 
 bool Tello::changeWifi(string ssid, string password)
 {
-	string command = "wifi " + ssid + " " + password;
+	string command = "wifi "+ ssid + " " +password;
 	string response = sendCommand(command);
-	if (!response.compare("ok"))
+	if(!response.compare("ok"))
 	{
 		return true;
 	}
@@ -304,6 +308,7 @@ int Tello::getSpeed()
 	string response = sendCommand(command);
 	int x = atoi(response.c_str());
 	return x;
+
 }
 
 int Tello::getBattery()
