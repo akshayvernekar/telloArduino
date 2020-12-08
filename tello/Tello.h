@@ -12,9 +12,6 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include <string>
-// #include <stdlib.h>
-// #include <unistd.h>
-// #include <stdio.h>
 
 using namespace std;
 class Tello
@@ -23,6 +20,7 @@ private :
 	bool isInitialised ;
 	WiFiUDP* udpclient;
 	string sendCommand(string command);
+	bool check_range(int x, int min, int max);
 
 public:
 	Tello();
@@ -50,7 +48,7 @@ public:
 	bool flip_back();
 
 	bool setSpeed(int x);
-	bool sendRCcontrol(int x,int y,int z);
+	bool sendRCcontrol(int a,int b,int c, int d);
 	bool changeWifi(string ssid, string password);
 
 	int getSpeed();

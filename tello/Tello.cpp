@@ -8,7 +8,7 @@
 #include "Tello.h"
 
 static const char* TELLOIPADDRESS = "192.168.10.1";
-static const int COMMAND_PORT = 8889 ;
+static const int COMMAND_PORT = 8889;
 static const int STATUS_PORT = 8890;
 #define MAXBUFFSIZE 512
 
@@ -267,9 +267,27 @@ bool Tello::setSpeed(int x)
 	return false;
 }
 
-//TODO: need to understand this RC stuff
-bool Tello::sendRCcontrol(int x,int y,int z)
+//“a” = left/right (-100-100)
+//“b” = forward/backward (-100-100)
+//“c” = up/down (-100-100)
+//“d” = yaw (-100-100)
+bool Tello::sendRCcontrol(int a, int b, int c, int d)
 {
+	if(!(check_range(a, -100, 100)) || !(check_range(b, -100, 100)) || !(check_range(c, -100, 100)) || !(check_range(d, -100, 100))){
+		return false;
+	}
+	char buff[10];
+	string _a = string(itoa(a, buff, 10));
+	string _b = string(itoa(b, buff, 10));
+	string _c = string(itoa(c, buff, 10));
+	string _d = string(itoa(d, buff, 10));
+	string command = "rc " + _a.append(" ") + _b.append(" ") + _c.append(" ") + _d;
+	string response = sendCommand(command);
+
+	if (!response.compare("ok"))
+	{
+		return true;
+	}
 	return false;
 }
 
@@ -363,4 +381,9 @@ int Tello::getWifiSnr()
 	string response = sendCommand(command);
 	int x = atoi(response.c_str());
 	return x;
+}
+
+bool Tello::check_range(int x, int min, int max)
+{
+	return (min < x && x < max);
 }
